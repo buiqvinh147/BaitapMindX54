@@ -1,19 +1,19 @@
 const fs = require("fs");
 
-const student = {
+const user = {
   ID: 1,
-  name: "nghia",
+  name: "duc",
   age: 19,
   gender: "male",
-  department: "History",
+  
 };
 
-const student2 = {
+const user2 = {
   ID: 2,
   name: "hanh",
   age: 19,
   gender: "female",
-  department: "History",
+  
 };
 
 const write = async (content) => {
@@ -37,36 +37,36 @@ const create = async () => {
   const exists = await fs.existsSync("./fs_CRUD.json");
 
   if (!exists) {
-    write([student]);
+    write([user]);
     console.log(" created successful");
   } else {
     console.log(" existed successful");
   }
 };
 
-const check = async (studentId) => {
+const check = async (userId) => {
   const read = await fs.promises.read("./fs_CRUD.json", "utf8");
 
-  let student = JSON.parse(read);
+  let user = JSON.parse(read);
 
-  for (let i = 0; i < student.length; i++) {
-    if (student[i].ID === studentId) {
+  for (let i = 0; i < user.length; i++) {
+    if (user[i].ID === userId) {
       return true;
     }
   }
 };
 
-const addStudent = async (data) => {
+const addUser = async (data) => {
   try {
     const read = await fs.promises.read("./fs_CRUD.json", "utf8");
 
-    let student = JSON.parse(read);
+    let user = JSON.parse(read);
 
-    let idList = student.map((e) => e.ID);
+    let idList = user.map((e) => e.ID);
 
     if (idList.indexOf(data.ID) < 0) {
-      student.push(data);
-      write(student);
+      user.push(data);
+      write(user);
     } else {
       console.log("ID existed, try again!");
     }
@@ -75,47 +75,47 @@ const addStudent = async (data) => {
   }
 };
 
-const deleteStudent = async (studentId) => {
+const deleteUser = async (userId) => {
   const read = await fs.promises.read("./fs_CRUD.json", "utf8");
 
-  if (await check(studentId)) {
-    let student = JSON.parse(read);
+  if (await check(userId)) {
+    let user = JSON.parse(read);
 
-    for (let i = 0; i < student.length; i++) {
-      if (student[i].ID === studentId) {
-        student.splice(student.indexOf(student[i]), 1);
+    for (let i = 0; i < user.length; i++) {
+      if (user[i].ID === userId) {
+        user.splice(user.indexOf(user[i]), 1);
       }
     }
 
-    write(student);
+    write(user);
   } else {
-    console.log("In studentId! Try another one");
+    console.log("In userId! Try another one");
   }
 };
 
-const updateStudent = async (studentId, updateData) => {
+const updateUser = async (userId, updateData) => {
   const read = await fs.promises.read("./fs_CRUD.json", "utf8");
 
-  if (await check(studentId)) {
-    let student = JSON.parse(read);
+  if (await check(userId)) {
+    let user = JSON.parse(read);
 
-    for (let i = 0; i < student.length; i++) {
-      if (student[i].ID === studentId) {
-        student[i] = updateData;
+    for (let i = 0; i < user.length; i++) {
+      if (user[i].ID === userId) {
+        user[i] = updateData;
       }
     }
 
-    write(student);
+    write(user);
   } else {
-    console.log("In studentId! Try another one");
+    console.log("In userId! Try another one");
   }
 };
 
 const main = async () => {
   await create();
 
-  await addStudent(student2);
-  //   await updateStudent(2, student);
+  await addUser(user2);
+  
 
   await read();
 };

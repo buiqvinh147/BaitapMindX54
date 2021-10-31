@@ -1,6 +1,6 @@
 [
-    { "ID":1,"name":"duc","age":26,"gender":"Male","department":"Math"},
-    { "ID":2,"name":"linh","age":24,"gender":"Female","department":"OM"},
-    { "ID":3,"name":"nam","age":24,"gender":"Male","department":"Chemistry"},
-    { "ID":4,"name":"phong","age":24,"gender":"Male","department":"History"}
+    { "ID":1,"name":"duc","age":26,"gender":"Male"},
+    { "ID":2,"name":"linh","age":24,"gender":"Female"},
+    { "ID":3,"name":"nam","age":24,"gender":"Male"},
+    { "ID":4,"name":"phong","age":24,"gender":"Male"}
 ]
